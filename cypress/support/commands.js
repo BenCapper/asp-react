@@ -23,3 +23,17 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('login', (email,pass) => {
+    cy.get('input[placeholder="Email"]').clear().type(email);
+    cy.get('input[placeholder="Password"]').clear().type(pass);        
+    cy.get(':nth-child(7) > .MuiButtonBase-root').click();
+})
+
+Cypress.Commands.add('mustWatch', () => {
+    cy.get('.MuiAvatar-root').should("not.exist");
+    cy.get("button[aria-label='add to must watch']").eq(0).click();
+    cy.get('.MuiAvatar-root').find("svg").should("exist");
+    cy.get('.MuiToolbar-root > :nth-child(8)').click();
+    cy.url().should("include", "/movies/mustwatch");
+})
