@@ -29,7 +29,7 @@ Cypress.Commands.add('login', (email,pass) => {
     cy.get('input[placeholder="Password"]').clear().type(pass);        
     cy.get(':nth-child(7) > .MuiButtonBase-root').click();
     cy.url().should("include", `/movies`)
-})
+});
 
 Cypress.Commands.add('mustWatch', () => {
     cy.get('.MuiAvatar-root').should("not.exist");
@@ -37,4 +37,14 @@ Cypress.Commands.add('mustWatch', () => {
     cy.get('.MuiAvatar-root').find("svg").should("exist");
     cy.get('.MuiToolbar-root > :nth-child(8)').click();
     cy.url().should("include", "/movies/mustwatch");
-})
+});
+
+Cypress.Commands.add('openReviews', () => {
+    cy.get('.MuiFab-root').click();
+    cy.get('.MuiDrawer-root').should('be.visible');
+});
+
+Cypress.Commands.add('openFullReview', () => {
+    cy.openReviews();
+    cy.get(':nth-child(1) > :nth-child(3) > a').click();
+});
