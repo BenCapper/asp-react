@@ -28,6 +28,7 @@ Cypress.Commands.add('login', (email,pass) => {
     cy.get('input[placeholder="Email"]').clear().type(email);
     cy.get('input[placeholder="Password"]').clear().type(pass);        
     cy.get(':nth-child(7) > .MuiButtonBase-root').click();
+    cy.url().should("include", `/movies`)
 })
 
 Cypress.Commands.add('mustWatch', () => {

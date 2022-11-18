@@ -1,63 +1,71 @@
 let movies; // List of movies from TMDB
 let movie; //
+let movieid = 882598;
+let similar;
+const email = "test@test.com"; 
+const pass = "test20"; 
 
 describe("Base tests", () => {
-  before(() => {
-    // Get the discover movies from TMDB and store them locally.
-    cy.request(
-      `https://api.themoviedb.org/3/discover/movie?api_key=${Cypress.env(
-        "TMDB_KEY"
-      )}&language=en-US&include_adult=false&include_video=false&page=1`
-    )
-      .its("body") // Take the body of HTTP response from TMDB
-      .then((response) => {
-        movies = response.results;
-      });
-  });
+
   beforeEach(() => {
     cy.visit("/");
-  });
-
-  describe("The Discover Movies page", () => {
-    it("displays the page header and 20 movies", () => {
-      cy.get("h3").contains("Discover Movies");
-      cy.get(".MuiCardHeader-root").should("have.length", 20);
-    });
-
-    it("displays the correct movie titles", () => {
-      cy.get(".MuiCardHeader-content").each(($card, index) => {
-        cy.wrap($card).find("p").contains(movies[index].title);
-      });
-    });
+    cy.login(email,pass);
   });
   describe("The movie details page", () => {
     before(() => {
       cy.request(
         `https://api.themoviedb.org/3/movie/${
-          movies[0].id
+          movieid
         }?api_key=${Cypress.env("TMDB_KEY")}`
       )
         .its("body")
         .then((movieDetails) => {
           movie = movieDetails;
         });
+
+      cy.request(
+        `https://api.themoviedb.org/3/movie/${movieid}/similar?api_key=${Cypress.env(
+          "TMDB_KEY"
+        )}&language=en-US`
+      )
+        .its("body") // Take the body of HTTP response from TMDB
+        .then((response) => {
+          similar = response.results;
+        });
+        
     });
     beforeEach(() => {
-      cy.visit(`/movies/${movies[0].id}`);
+      cy.visit(`/movies/${movieid}`);
+      cy.log(similar)
     });
-    it(" displays the movie title, overview and genres and ", () => {
-      cy.get("h3").contains(movie.title);
-      cy.get("h3").contains("Overview");
-      cy.get("h3").next().contains(movie.overview);
-      cy.get("ul")
-        .eq(1)
+    it("displays similar header and 20 similar movies", () => {
+      cy.get('.css-1idn90j-MuiGrid-root > .MuiTypography-root').contains("Similar Movies");
+      cy.get(".MuiCardHeader-root").should("have.length", 20);
+    });
+    it("tests whether the similar movies are correct", () => {
+      cy.get(".MuiCardHeader-root")
         .within(() => {
-          const genreChipLabels = movie.genres.map((g) => g.name);
-          genreChipLabels.unshift("Genres");
-          cy.get("span").each(($card, index) => {
-            cy.wrap($card).contains(genreChipLabels[index]);
+          cy.get("p").each(($card, index) => {
+            cy.wrap($card).contains(similar[index].title);
           });
         });
     });
-  });
+    it("displays the movie production companies", () => {
+      cy.get('.MuiGrid-grid-xs-9 > :nth-child(6)')
+        .within(() => {
+          const production = movie.production_companies.map((g) => g.name);
+          production.unshift("Production Companies");
+          cy.get("li").each(($card, index) => {
+            cy.wrap($card).contains(production[index]);
+          });
+        });
+    });
+    it("navigate to company homepage", () => {
+      cy.get('.MuiGrid-grid-xs-9 > :nth-child(6)')
+        .within(() => {
+          cy.get("li").eq(1).click();
+        });
+    });
+
+});
 });

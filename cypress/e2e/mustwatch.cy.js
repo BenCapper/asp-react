@@ -18,7 +18,6 @@ describe("The Must Watch Movies Feature", () => {
   beforeEach(() => {
     cy.visit("/");
     cy.login(email,pass);
-    cy.url().should("include", `/movies`)
     cy.visit("/movies/upcoming");
   });
 
