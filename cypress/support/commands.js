@@ -79,3 +79,8 @@ Cypress.Commands.add('navFavoriteTv', (query) => {
     cy.get("button[aria-label='add to favorites']").eq(2).click();
     cy.get("button").contains("Favorite TV").click(); 
 });
+
+Cypress.Commands.add('appBarCheck', (page, path) => {
+    cy.get('.MuiToolbar-root').contains(page).click();
+    cy.url().should("include", path);
+});
