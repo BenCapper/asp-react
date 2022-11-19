@@ -22,7 +22,7 @@ describe("The Favorite TV Feature", () => {
   });
 
   describe("Selecting favorites", () => {
-    it("selected movie card shows the red heart", () => {
+    it("selected series shows the favorite icon", () => {
       cy.get(".MuiCardHeader-root").eq(1).find("svg").should("not.exist");
       cy.get("button[aria-label='add to favorites']").eq(1).click();
       cy.get(".MuiCardHeader-root").eq(1).find("svg");
@@ -31,15 +31,22 @@ describe("The Favorite TV Feature", () => {
 
   describe("The favorite tv page", () => {
     beforeEach(() => {
-      // Select two favorites and navigate to Favorites page
-      cy.get("button[aria-label='add to favorites']").eq(1).click();
-      cy.get("button[aria-label='add to favorites']").eq(3).click();
-      cy.get("button").contains("Favorite TV").click();
+      cy.navFavoriteTv()
+      cy.url().should("include", "/tv/favorites");
     });
-    it("only the tagged series are listed", () => {
+    it("only the favorite series are listed", () => {
       cy.get(".MuiCardHeader-content").should("have.length", 2);
       cy.get(".MuiCardHeader-content").eq(0).find("p").contains(tvs[1].name);
-      cy.get(".MuiCardHeader-content").eq(1).find("p").contains(tvs[3].name);
+      cy.get(".MuiCardHeader-content").eq(1).find("p").contains(tvs[2].name);
+    });
+    it("trash icon removes favorite", () => {
+      cy.get('[data-testid="DeleteIcon"]').eq(0).click();
+      cy.get(".MuiCardHeader-content").eq(0).find("p").contains(tvs[2].name);
+      cy.get(".MuiCardHeader-content").should("have.length", 1);
+    });
+    it("review icon navigates to series review page", () => {
+      cy.get('[data-testid="RateReviewIcon"]').eq(0).click();
+      cy.url().should("include", "/tv/reviews/form");
     });
   });
 });

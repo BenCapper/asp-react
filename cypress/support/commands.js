@@ -74,3 +74,8 @@ Cypress.Commands.add('testSeries', (top) => {
     });
 });
 
+Cypress.Commands.add('navFavoriteTv', (query) => {
+    cy.get("button[aria-label='add to favorites']").eq(1).click();
+    cy.get("button[aria-label='add to favorites']").eq(2).click();
+    cy.get("button").contains("Favorite TV").click(); 
+});
