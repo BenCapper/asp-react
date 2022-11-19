@@ -32,12 +32,12 @@ Cypress.Commands.add('login', (email,pass) => {
     cy.url().should("include", `/movies`)
 });
 
-Cypress.Commands.add('mustWatch', () => {
+Cypress.Commands.add('mustWatch', (endpoint) => {
     cy.get('.MuiAvatar-root').should("not.exist");
     cy.get("button[aria-label='add to must watch']").eq(0).click();
     cy.get('.MuiAvatar-root').find("svg").should("exist");
-    cy.get('.MuiToolbar-root > :nth-child(8)').click();
-    cy.url().should("include", "/movies/mustwatch");
+    cy.get('button').contains("Must Watch").click();
+    cy.url().should("include", endpoint);
 });
 
 Cypress.Commands.add('openReviews', () => {
