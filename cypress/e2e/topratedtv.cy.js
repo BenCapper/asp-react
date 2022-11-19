@@ -1,4 +1,3 @@
-let movies;
 let topTv;
 let page = 1;
 const email = "test@test.com"; 

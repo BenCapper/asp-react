@@ -21,7 +21,7 @@ describe("The Movie Details Page", () => {
         "TMDB_KEY"
       )}&language=en-US`
     )
-      .its("body") // Take the body of HTTP response from TMDB
+      .its("body")
       .then((response) => {
         similar = response.results;
       });
