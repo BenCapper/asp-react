@@ -36,7 +36,6 @@ describe("Base tests", () => {
     });
     beforeEach(() => {
       cy.visit(`/movies/${movieid}`);
-      cy.log(similar)
     });
     it("displays similar header and 20 similar movies", () => {
       cy.get('.css-1idn90j-MuiGrid-root > .MuiTypography-root').contains("Similar Movies");

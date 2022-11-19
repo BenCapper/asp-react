@@ -44,7 +44,7 @@ describe("Base tests", () => {
     it("tests the full review option", () => {
         cy.openFullReview();
         cy.url().should("include", `/reviews/${reviews.results[0].id}`);
-        //cy.get(".MuiGrid-root").find('p').contains(reviews.results[0].content);
+        //cy.get('.MuiGrid-grid-xs-9').find('p').eq(0).contains(reviews.results[0].content);
       });
 
 });
