@@ -25,6 +25,7 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 Cypress.Commands.add('login', (email,pass) => {
+    cy.visit("/");
     cy.get('input[placeholder="Email"]').clear().type(email);
     cy.get('input[placeholder="Password"]').clear().type(pass);        
     cy.get(':nth-child(7) > .MuiButtonBase-root').click();

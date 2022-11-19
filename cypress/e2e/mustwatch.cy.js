@@ -16,7 +16,6 @@ describe("The Must Watch Movies Feature", () => {
       });
   });
   beforeEach(() => {
-    cy.visit("/");
     cy.login(email,pass);
     cy.visit("/movies/upcoming");
   });
@@ -33,7 +32,7 @@ describe("The Must Watch Movies Feature", () => {
         cy.get('.MuiCardHeader-content > .MuiTypography-root').eq(0).contains(movies[0].title);
         cy.get('.MuiCardHeader-content > .MuiTypography-root').should("have.length", 1);
       });
-    it("selected more info on mustWatch card", () => {
+    it("selecting more info on mustWatch card navigates to details", () => {
         cy.mustWatch();
         cy.get('a > .MuiButtonBase-root').click();
         cy.url().should("include", "/movies/" + movies[0].id)
