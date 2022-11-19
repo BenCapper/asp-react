@@ -1,6 +1,7 @@
 let movie; 
-let movieid = 882598;
+let movieId = 882598;
 let similar;
+let images;
 const email = "test@test.com"; 
 const pass = "test20"; 
 
@@ -9,7 +10,7 @@ describe("The Movie Details Page", () => {
   before(() => {
     cy.request(
       `https://api.themoviedb.org/3/movie/${
-        movieid
+        movieId
       }?api_key=${Cypress.env("TMDB_KEY")}`
     )
       .its("body")
@@ -17,7 +18,7 @@ describe("The Movie Details Page", () => {
         movie = movieDetails;
       });
     cy.request(
-      `https://api.themoviedb.org/3/movie/${movieid}/similar?api_key=${Cypress.env(
+      `https://api.themoviedb.org/3/movie/${movieId}/similar?api_key=${Cypress.env(
         "TMDB_KEY"
       )}&language=en-US`
     )
@@ -25,11 +26,24 @@ describe("The Movie Details Page", () => {
       .then((response) => {
         similar = response.results;
       });
+    
+    cy.request(
+      `https://api.themoviedb.org/3/movie/${movieId}/images?api_key=${Cypress.env(
+        "TMDB_KEY"
+      )}`
+    )
+      .its("body")
+      .then((response) => {
+        images = response.posters;
+      });
       
   });
   beforeEach(() => {
     cy.login(email,pass);
-    cy.visit(`/movies/${movieid}`);
+    cy.visit(`/movies/${movieId}`);
+  });
+  it("Tests that the Images are correct", () => {
+    cy.imageDetailsCheck(images);
   });
   it("Displays similar header and 20 similar movies list", () => {
     cy.get('.css-1idn90j-MuiGrid-root > .MuiTypography-root').contains("Similar Movies");
@@ -56,7 +70,7 @@ describe("The Movie Details Page", () => {
   it("Navigate to company homepage", () => {
     cy.get('.MuiGrid-grid-xs-9 > :nth-child(6)')
       .within(() => {
-        cy.get("li").eq(1).click();
+        //cy.get("li").eq(1).click();
       });
   });
 });

@@ -1,10 +1,9 @@
 const email = "test@test.com"; 
 const pass = "test20";
-const path =  `/movies`;
 
 
 describe("Navigation Menus", () => {
-  
+
   beforeEach(() => {
     cy.login(email,pass);
   });

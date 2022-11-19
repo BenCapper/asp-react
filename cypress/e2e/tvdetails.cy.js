@@ -1,5 +1,6 @@
 let tvSeries;
 let seasons;
+let images;
 let episodeList; 
 let seriesId = 1402;
 const email = "test@test.com"; 
@@ -24,11 +25,21 @@ describe("The TV Details Page", () => {
       .then((seasonDetails) => {
         episodeList = seasonDetails.episodes;
       });
+
+    cy.request(
+      `https://api.themoviedb.org/3/tv/${seriesId}/images?api_key=${Cypress.env("TMDB_KEY")}`)
+      .its("body")
+      .then((response) => {
+        images = response.posters;
+      });
       
   });
   beforeEach(() => {
     cy.login(email,pass);
     cy.visit(`/tv/${seriesId}`);
+  });
+  it("Tests that the Images are correct", () => {
+    cy.imageDetailsCheck(images);
   });
   it("Tests the episodes list is correct", () => {
     cy.get('.MuiTableCell-alignRight > a').eq(1).click();

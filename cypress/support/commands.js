@@ -84,3 +84,13 @@ Cypress.Commands.add('appBarCheck', (page, path) => {
     cy.get('.MuiToolbar-root').contains(page).click();
     cy.url().should("include", path);
 });
+
+Cypress.Commands.add('imageDetailsCheck', (list) => {
+    cy.get('.MuiImageList-root')
+    .within(() => {
+      cy.get("li").each(($card, index) => {
+        cy.log(list[index].file_path)
+        cy.wrap($card).get("img").eq(index).should("have.attr", "src").should("include", list[index].file_path);
+      });
+    });
+});
