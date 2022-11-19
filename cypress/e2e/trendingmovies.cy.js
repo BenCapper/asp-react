@@ -38,7 +38,7 @@ describe("The Trending Movies page", () => {
     cy.get(".MuiCardHeader-root")
       .within(() => {
         cy.get("p").each(($card, index) => {
-          cy.log(trending[index].title);
+          //cy.log(trending[index].title);
           cy.wrap($card).contains(trending[index].title);
       });
     });

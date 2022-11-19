@@ -49,3 +49,18 @@ Cypress.Commands.add('openFullReview', () => {
     cy.openReviews();
     cy.get(':nth-child(1) > :nth-child(3) > a').click();
 });
+
+Cypress.Commands.add('searchPeople', (query,list) => {
+    cy.get('#outlined-required').type(query);
+    cy.get('button').contains('People').click();
+    cy.get('.MuiButton-containedPrimary').click();
+    cy.get('h5').each(($card, index) => {
+        cy.log(list[index].name);
+        cy.wrap($card).contains(list[index].name);
+    });
+});
+
+Cypress.Commands.add('typeClick', (query) => {
+    cy.get('#outlined-required').type(query);
+    cy.get('.MuiButton-containedPrimary').click(); 
+});

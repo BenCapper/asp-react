@@ -2,8 +2,6 @@ const email = "test@test.com";
 const pass = "test20"; 
 
 
-
-  
 describe("The Login Form and Errors", () => {
   beforeEach(() => {
     cy.visit("/");
