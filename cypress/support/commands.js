@@ -64,3 +64,13 @@ Cypress.Commands.add('typeClick', (query) => {
     cy.get('#outlined-required').type(query);
     cy.get('.MuiButton-containedPrimary').click(); 
 });
+
+Cypress.Commands.add('testSeries', (top) => {
+    cy.get(".MuiCardHeader-root")
+      .within(() => {
+        cy.get("p").each(($card, index) => {
+          cy.wrap($card).contains(top[index].name);
+      });
+    });
+});
+
