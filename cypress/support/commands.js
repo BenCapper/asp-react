@@ -50,6 +50,21 @@ Cypress.Commands.add('openFullReview', () => {
     cy.get(':nth-child(1) > :nth-child(3) > a').click();
 });
 
+
+Cypress.Commands.add('toReviewForm', () => {
+    cy.get("button[aria-label='add to favorites']").eq(1).click();
+    cy.get("button").contains("Favorite Movies").click();
+    cy.get("svg[data-testid='RateReviewIcon']").click();
+});
+
+Cypress.Commands.add('toReviewFormTv', () => {
+    cy.visit("/tv");
+    cy.get("button[aria-label='add to favorites']").eq(1).click();
+    cy.get("button").contains("Favorite TV").click();
+    cy.get("svg[data-testid='RateReviewIcon']").click();
+});
+
+
 Cypress.Commands.add('searchPeople', (query,list) => {
     cy.get('#outlined-required').type(query);
     cy.get('button').contains('People').click();
