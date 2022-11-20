@@ -14,6 +14,8 @@ const TvHomePage = (props) => {
   const [user, setUser] = useState({});
   const navigate = useNavigate();
 
+  console.log(user);
+
   useEffect(() => {
     const loggedIn = localStorage.getItem("user");
     if (loggedIn) {

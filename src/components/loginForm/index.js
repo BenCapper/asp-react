@@ -46,7 +46,10 @@ const LoginForm = () => {
   const [user, setUser] = useState({});
   const [fbCode, setFbCode] = useState("")
   const navigate = useNavigate();
-  const auth = getAuth();
+  const authenticate = getAuth();
+  console.log(auth);
+  console.log(authenticate);
+  console.log(user);
   
   const [values, setValues] = React.useState({
       email: '',

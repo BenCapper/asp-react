@@ -17,6 +17,7 @@ const WriteReviewPage = (props) => {
     getTv
   );
   const [user, setUser] = useState({});
+  console.log(user);
   const navigate = useNavigate();
 
   useEffect(() => {

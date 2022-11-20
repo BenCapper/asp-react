@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 const TvFavoritePage = () => {
   const {favorites: tvIds } = useContext(TvContext);
   const [user, setUser] = useState({});
+  console.log(user);
   const navigate = useNavigate();
 
   useEffect(() => {

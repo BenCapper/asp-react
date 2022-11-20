@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 const FavoriteMoviesPage = () => {
   const {favorites: movieIds } = useContext(MoviesContext);
   const [user, setUser] = useState({});
+  console.log(user);
   const navigate = useNavigate();
 
   useEffect(() => {

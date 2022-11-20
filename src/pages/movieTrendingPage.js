@@ -13,6 +13,7 @@ const TrendingPage = (props) => {
   const [pageNumber, setPageNumber] = useState(1);
   const [user, setUser] = useState({});
   const navigate = useNavigate();
+  console.log(user);
 
   useEffect(() => {
     const loggedIn = localStorage.getItem("user");

@@ -17,6 +17,7 @@ const WriteReviewPage = (props) => {
     getMovie
   );
   const [user, setUser] = useState({});
+  console.log(user);
   const navigate = useNavigate();
 
   useEffect(() => {

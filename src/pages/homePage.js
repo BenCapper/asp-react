@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 const HomePage = (props) => {
   const [pageNumber, setPageNumber] = useState(1);
   const [user, setUser] = useState({});
+  console.log(user);
   const navigate = useNavigate();
 
   useEffect(() => {
