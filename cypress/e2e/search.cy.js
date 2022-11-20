@@ -34,7 +34,7 @@ describe("The Search page", () => {
     cy.get('button').contains('People').click();
     cy.get('button[aria-pressed="true"]').contains("People");
     });
-  it("Searches for a companies and confirms the result", () => {
+  it("Searches for companies and confirms the result", () => {
     cy.typeClick(query);
     cy.get('h5').each(($card, index) => {
         cy.wrap($card).contains(companies[index].name);

@@ -18,7 +18,7 @@ describe("The Discover TV page", () => {
     cy.login(email,pass);
     cy.visit(`/tv`);
   });
-  it("Displays discover header and 20 similar series on page 1", () => {
+  it("Displays discover header and 20 series on page 1", () => {
     cy.get('h3').contains("Discover TV");
     cy.get(".MuiCardHeader-root").should("have.length", 20);
     cy.get("li").eq(1).contains("1");

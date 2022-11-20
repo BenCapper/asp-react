@@ -2,7 +2,7 @@ const email = "test@test.com";
 const pass = "test20";
 
 
-describe("Navigation Menus", () => {
+describe("App Bar Navigation Menus", () => {
 
   beforeEach(() => {
     cy.login(email,pass);
