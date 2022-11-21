@@ -66,7 +66,7 @@ Cypress.Commands.add('toReviewFormTv', () => {
 
 
 Cypress.Commands.add('searchPeople', (query,list) => {
-    cy.get('#outlined-required').type(query);
+    cy.get('#outlined-required').type(query, {force: true});
     cy.get('button').contains('People').click();
     cy.get('.MuiButton-containedPrimary').click();
     cy.get('h5').each(($card, index) => {
@@ -76,7 +76,7 @@ Cypress.Commands.add('searchPeople', (query,list) => {
 });
 
 Cypress.Commands.add('typeClick', (query) => {
-    cy.get('#outlined-required').type(query);
+    cy.get('#outlined-required').type(query, {force: true});
     cy.get('.MuiButton-containedPrimary').click(); 
 });
 

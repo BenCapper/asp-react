@@ -54,12 +54,8 @@ describe("The Search page", () => {
           people = response.results;
         });
     cy.get('button').contains('2').click();
-    cy.get(".css-1p5q5e5-MuiStack-root")
-      .within(() => {
-        cy.get("h5").each(($card, index) => {
-            cy.log()
-            cy.wrap($card).contains(people[index].name);
-      });
+    cy.get("h5").each(($card, index) => {
+        cy.wrap($card).contains(people[index].name);
     });
   });
   it("Shows spinner on empty query", () => {
