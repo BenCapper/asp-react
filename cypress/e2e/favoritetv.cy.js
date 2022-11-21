@@ -1,8 +1,8 @@
 let tvs;
 let page = 1;
 const tvId = 90462;
-const email = "test@test.com"; 
-const pass = "test20"; 
+const email = "test33@test.com"; 
+const pass = "test33"; 
 
 describe("The Favorite TV Feature", () => {
   before(() => {

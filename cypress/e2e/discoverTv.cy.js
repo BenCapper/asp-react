@@ -1,7 +1,7 @@
 let discover;
 let page = 1;
-const email = "test@test.com"; 
-const pass = "test20"; 
+const email = "test22@test.com"; 
+const pass = "test22"; 
 
 describe("The Discover TV page", () => {
   before(() => {

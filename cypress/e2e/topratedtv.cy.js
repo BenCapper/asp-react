@@ -1,7 +1,7 @@
 let topTv;
 let page = 1;
-const email = "test@test.com"; 
-const pass = "test20"; 
+const email = "test99@test.com"; 
+const pass = "test99"; 
 
 describe("The Top Rated Tv page", () => {
   before(() => {

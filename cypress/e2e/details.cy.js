@@ -8,8 +8,8 @@ let seriesId = 1402;
 let imagesTv;
 let tvSeries;
 let seasons;
-const email = "test@test.com"; 
-const pass = "test20"; 
+const email = "test11@test.com"; 
+const pass = "test11"; 
 
 
 describe("The Movie Details Page", () => {
@@ -51,8 +51,7 @@ describe("The Movie Details Page", () => {
   it("Tests that the Images are correct", () => {
     cy.imageDetailsCheck(images);
   });
-  it("Displays similar header and 20 similar movies list", () => {
-    cy.get('.css-1idn90j-MuiGrid-root > .MuiTypography-root').contains("Similar Movies");
+  it("Check length of similar movies list", () => {
     cy.get(".MuiCardHeader-root").should("have.length", 20);
   });
   it("Tests whether the similar movies are correct", () => {

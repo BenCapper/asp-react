@@ -2,8 +2,8 @@ let query = "sand";
 let people;
 let companies;
 let page = 1;
-const email = "test@test.com"; 
-const pass = "test20"; 
+const email = "test88@test.com"; 
+const pass = "test88"; 
 
 describe("The Search page", () => {
   before(() => {

@@ -1,7 +1,7 @@
 let movies;
 let tvs;
-const email = "test@test.com"; 
-const pass = "test20"; 
+const email = "test44@test.com"; 
+const pass = "test44"; 
 const m = "/mustwatch"
 
 describe("The Must Watch Movies Feature", () => {
@@ -17,7 +17,6 @@ describe("The Must Watch Movies Feature", () => {
       });
   });
   beforeEach(() => {
-    cy.visit("/");
     cy.login(email,pass);
     cy.visit("/movies/upcoming");
   });
